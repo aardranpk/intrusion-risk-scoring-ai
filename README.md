@@ -177,6 +177,14 @@ Fwd Packet Length Mean → ↓ risk
 This allows analysts to **understand and trust** model decisions.
 
 ---
+## 🖥️ Dashboard Preview
+
+### Risk Scoring Overview
+![Risk Scoring Overview](docs/screenshots/dashboard_overview.png)
+
+### Explainability (SHAP)
+![SHAP Explanation](docs/screenshots/shap_explanation.png)
+
 
 ## ⚠️ Limitations
 
