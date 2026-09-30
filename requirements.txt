@@ -11,3 +11,4 @@ streamlit
 matplotlib
 pytest
 ruff
+httpx
