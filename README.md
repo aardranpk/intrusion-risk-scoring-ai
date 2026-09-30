@@ -6,7 +6,7 @@
 ![SHAP](https://img.shields.io/badge/Explainable%20AI-SHAP-purple)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)
 ![Security](https://img.shields.io/badge/Cybersecurity-Intrusion%20Detection-darkgreen)
-[![Author](https://img.shields.io/badge/Author-Aardran%20Premakumar-blueviolet)](https://github.com/<your-username>)
+[![Author](https://img.shields.io/badge/Author-Aardran%20Premakumar-blueviolet)](https://github.com/aardranpk)
 
 
 An **end-to-end, explainable AI system** for network intrusion detection that goes beyond binary alerts by producing **risk scores, severity levels, and human-interpretable explanations** for security analysts.
@@ -95,6 +95,8 @@ Network Flow Data (CICIDS)
 - SHAP
 - Streamlit
 - Joblib
+- FastAPI
+- pytest
 
 ---
 
@@ -157,6 +159,35 @@ python -m src.explain.demo_explain
 python -m streamlit run dashboard/app.py
 
 ```
+## 🌐 REST API (FastAPI)
+
+Start the API:
+```bash
+uvicorn src.app.main:app --reload
+```
+Interactive docs at http://127.0.0.1:8000/docs
+
+| Method | Endpoint   | Description |
+|--------|------------|-------------|
+| GET    | `/health`  | Service status and whether a trained model is loaded |
+| POST   | `/score`   | Convert a probability (0–1) into a risk score and severity |
+| POST   | `/predict` | Score one network flow with the trained XGBoost model |
+
+Example:
+```bash
+curl -X POST http://127.0.0.1:8000/score -H "Content-Type: application/json" -d '{"probability": 0.82}'
+# {"risk_score":82,"severity":"High","model_probability":0.82}
+```
+
+## ✅ Testing
+
+```bash
+pytest
+```
+24 tests cover risk-score conversion, severity band boundaries, input validation, and all API endpoints.
+API tests use a fake model, so they run without the dataset or a trained model.
+Tests run automatically on every push and pull request via GitHub Actions.
+
 
 ## 📈 Example Results
 

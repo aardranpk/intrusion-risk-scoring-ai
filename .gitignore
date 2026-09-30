@@ -14,7 +14,7 @@ build/
 .ipynb_checkpoints/
 
 # Data (do not commit datasets)
-data/
+/data/
 *.csv
 *.parquet
 
